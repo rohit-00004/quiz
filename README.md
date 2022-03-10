@@ -28,17 +28,20 @@ If correct                 |  If wrong                 |  Result page
 Clone the repository
 
 ```
-  git clone https://github.com/rohit-00004/quiz.git
+git clone https://github.com/rohit-00004/quiz.git
 ```
 
 Change directory
 ```
-cd quiz_app
+cd quiz
 ```
-
+Run this to get all dependencies
+```
+flutter pub get
+```
 Make sure you have an emulator already setup and selected, run the project as
 ```
- flutter run 
+flutter run 
 ```
 Press q to exit 
 
