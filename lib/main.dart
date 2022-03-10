@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/home_pg.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:quiz_app/screens/landing.dart';
 
-
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -16,9 +18,8 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData(
       //   primarySwatch: Colors.brown,
       // ),
-     
       title: 'Quiz app',
-      home: Home(),
+      home: Enter(),
 
     );
   }

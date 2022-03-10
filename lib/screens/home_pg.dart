@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/result_window.dart';
+import 'package:quiz_app/Questions/question_1.dart';
+import 'package:quiz_app/screens/drawer_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -10,32 +11,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   
-  String answer = "some";
-  List<String> validAnswers = ['circle', 'earth', 'ball', 'tyre'];
-  List<String> userInput = ["nothing"];
   @override
   Widget build(BuildContext context) {
-    int unique = 0, total = 0, correct = 0;
-    Map<String, int> storeResult = { 'circle': 0, 'earth': 0, 'ball': 0, 'tyre': 0, 'wheel': 0, 'ring': 0};
     var size = MediaQuery.of(context).size;
     
-    String _answer2 = "emp";
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-       // backgroundColor: Colors.blue[300],
-      // backgroundColor: const Color(0xFFd99f52),
+    return Scaffold(
+      drawer: NavigationDrawer(),
       appBar: AppBar(
-        title: const Text('Title here'),
-        bottom: const TabBar(
-          isScrollable: true,
-          tabs: [
-            Text('Question 1', style: (TextStyle(fontSize: 20)),),
-            Text('Question 2', style: (TextStyle(fontSize: 20)),),
-            Text('Question 3', style: (TextStyle(fontSize: 20)),),
-            Text('Question 4', style: (TextStyle(fontSize: 20)),),
-            ],
-        ),
+        title: const Text('Quiz'),
         flexibleSpace: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -51,7 +34,63 @@ class _HomeState extends State<Home> {
           children: <Widget>[
               header(size),
               const SizedBox(height: 10),
-              Column(
+              Question1(size: size),
+          ],
+            ),
+      )
+        
+      );
+
+
+  }
+
+  Stack header(Size size) {
+    return Stack
+          (
+            children: <Widget>[ 
+              Container(
+              height: size.height*0.32,
+              decoration:const  BoxDecoration(
+                color:  Color(0xff123456), //0xFFF5CEB8
+                borderRadius:  BorderRadius.only(
+                  bottomRight: Radius.circular(45.0),
+                  bottomLeft: Radius.circular(45.0),
+                ),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                  height: size.height*.2,
+                  width: size.width*.4,
+                  
+                  decoration:const BoxDecoration(                        
+                    image: DecorationImage(
+                      image: AssetImage('assets/img/quiz_logo.png'),
+                    ),
+                    shape: BoxShape.rectangle,
+                  ),
+                ),
+                const Text('Quiz',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'BilboSwashCaps',
+                  fontSize: 60,
+                  letterSpacing: 8,
+                  fontWeight: FontWeight.bold,
+                ),
+                )
+              ]
+          ),
+            ],
+          );
+  }
+}
+
+
+/*
+Column(
                 children:<Widget>[
                   Container(
                     height: 60,
@@ -139,56 +178,4 @@ class _HomeState extends State<Home> {
                   SizedBox(height: size.height*0.05,)
                 ] ,
               )
-          ],
-            ),
-      )
-        
-      ),
-    );
-
-
-  }
-
-  Stack header(Size size) {
-    return Stack
-          (
-            children: <Widget>[ 
-              Container(
-              height: size.height*0.32,
-              decoration:const  BoxDecoration(
-                color:  Color(0xff123456), //0xFFF5CEB8
-                borderRadius:  BorderRadius.only(
-                  bottomRight: Radius.circular(45.0),
-                  bottomLeft: Radius.circular(45.0),
-                ),
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-                  height: size.height*.2,
-                  width: size.width*.4,
-                  
-                  decoration:const BoxDecoration(                        
-                    image: DecorationImage(
-                      image: AssetImage('assets/img/quiz_logo.png'),
-                    ),
-                    shape: BoxShape.rectangle,
-                  ),
-                ),
-                const Text('Quiz',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'BilboSwashCaps',
-                  fontSize: 60,
-                  letterSpacing: 8,
-                  fontWeight: FontWeight.bold,
-                ),
-                )
-              ]
-          ),
-            ],
-          );
-  }
-}
+*/
